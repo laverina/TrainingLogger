@@ -1,2 +1,3 @@
-# TrainingLogger
+# README #
+
 test
