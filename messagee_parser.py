@@ -5,7 +5,8 @@ def parse_training(text):
     for index, line in enumerate(lines):
         line = lines[index].strip().lower()
         if index == 0:
-            pass  # skip first line - it's command
+            pass             # skip first line - it's command
+            pass             # skip first line - it's command
         elif line == '':
             training.append(next_exercise)
             next_exercise = []
