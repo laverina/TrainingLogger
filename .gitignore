@@ -8,3 +8,6 @@ __pycache__/
 
 # Configs with sensitive data
 config.ini
+
+# DATA
+data/exercises.db
