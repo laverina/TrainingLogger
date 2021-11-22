@@ -9,5 +9,10 @@ CREATE TABLE IF NOT EXISTS exercises(
 	details2 text,
 	details3 text,
 	details4 text,
-	details5 text
+	details5 text,
+	execution_details1 text,
+	execution_details2 text,
+	execution_details3 text,
+	execution_details4 text,
+	execution_details5 text
 );

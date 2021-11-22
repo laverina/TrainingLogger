@@ -26,16 +26,9 @@ for event in longpoll.listen():
 
             if received_message.startswith('запиши'):
                 training_date = messagee_parser.parse_date(received_message)
-                for i, exercise in enumerate(training):
-                    exercise_num = i + 1
-                    exercise_name = exercise[0]
-                    exercise_details = []
-                    for index in range(5):  # record up to 5 rows of exercise description
-                        if len(exercise) < index + 2:
-                            exercise_details.append('')
-                        else:
-                            exercise_details.append(exercise[index+1])
-                    db.add_exercise_records(event.user_id, training_date, exercise_num, exercise[0], exercise_details)
+                for exercise in training:
+                    db.add_exercise_records(event.user_id, training_date, exercise['num'], exercise['name'],
+                                            exercise['details'], exercise['execution_details'])
                 response_massage += '\n\nТренировка записана на дату ' + training_date
 
         elif received_message.startswith('подбери'):
