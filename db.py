@@ -34,4 +34,31 @@ def add_exercise_records(user_id, training_date, exercise_num, exercise_name, ex
     con.commit()
 
 
+def shorten_list_to_last_filled(lst):
+    for index in range(len(lst)):
+        if not ''.join(lst[index:]):
+            break
+    return list(lst[:index])
+
+
+def get_top_records(user_id, exercise_name, amount=3):
+    cursorobj = con.cursor()
+    cursorobj.execute("""
+        SELECT * FROM (SELECT * FROM exercises WHERE user_id = """ + str(user_id) + """ AND name = '"""
+                      + str(exercise_name) + """' ORDER BY date DESC) LIMIT """ + str(amount) + """
+    """)
+    rows = cursorobj.fetchall()
+
+    executions = []
+
+    for row in rows:
+        execution = {
+            'date': row[1],
+            'details': shorten_list_to_last_filled(row[4:8]),
+            'execution_details': shorten_list_to_last_filled(row[9:13]),
+        }
+        executions.append(execution)
+    return executions
+
+
 con = sqlite3.connect('data\exercises.db')
