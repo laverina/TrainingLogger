@@ -4,6 +4,7 @@ import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 import messagee_parser
 import training_formatter
+import db
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -14,7 +15,8 @@ vk = vk_session.get_api()
 
 for event in longpoll.listen():
 
-    if event.type == VkEventType.MESSAGE_NEW and event.from_user and event.to_me:
+    # since there's no protection from SQL injections right now, bot will work only for my user_id
+    if event.type == VkEventType.MESSAGE_NEW and event.from_user and event.to_me and event.user_id == 241190476:
 
         received_message = event.text
 
@@ -23,8 +25,11 @@ for event in longpoll.listen():
             response_massage = training_formatter.generate_training_description(training)
 
             if received_message.startswith('запиши'):
-                # todo сохранение в БД
-                response_massage += '\n\nтренировка записана'
+                training_date = messagee_parser.parse_date(received_message)
+                for exercise in training:
+                    db.add_exercise_records(event.user_id, training_date, exercise['num'], exercise['name'],
+                                            exercise['details'], exercise['execution_details'])
+                response_massage += '\n\nТренировка записана на дату ' + training_date
 
         elif received_message.startswith('подбери'):
             training = messagee_parser.parse_training(received_message)

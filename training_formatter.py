@@ -1,7 +1,11 @@
 def generate_training_description(training):
     message = 'тренировка состоит из упражнений:\n\n'
 
-    for index, exercise in enumerate(training):
-        message += str(index + 1) + '. ' + ' | '.join(exercise) + '\n'
-
+    for exercise in training:
+        message += str(exercise['num']) + '. ' + exercise['name']
+        if exercise['details']:
+            message += '\n -  ' + ' | '.join(exercise['details'])
+        if exercise['execution_details']:
+            message += '\n -- ' + ' | '.join(exercise['execution_details'])
+        message += '\n\n'
     return message
