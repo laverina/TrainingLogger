@@ -4,7 +4,7 @@ import sqlite3
 def add_exercise_records(user_id, training_date, exercise_num, exercise_name, sets, reps,
                          details, execution_weight, execution_details):
     cursorobj = con.cursor()
-    print("""
+    cursorobj.execute("""
                     INSERT INTO exercises VALUES(
                         """ + str(user_id) + """,
                         '""" + str(training_date).strip() + """',
