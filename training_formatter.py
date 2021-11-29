@@ -45,14 +45,15 @@ def generate_training_description(training):
     for exercise in training:
         message += str(exercise['num']) + '. ' + exercise['name']
         if exercise['sets'] and exercise['reps']:
-            message += '\n -  ' + exercise['sets'] + ' по ' + exercise['reps']
+            message += '\n -  ' + str(exercise['sets']) + ' по ' + str(exercise['reps'])
         if exercise['details']:
             message += '\n - ' + exercise['details']
         if exercise['execution_weight']:
-            message += '\n -- ' + exercise['execution_weight'] + ' кг'
+            message += '\n -- ' + str(exercise['execution_weight']) + ' кг'
         if exercise['execution_details']:
             message += '\n -- ' + exercise['execution_details']
         message += '\n\n'
+
     return message
 
 
