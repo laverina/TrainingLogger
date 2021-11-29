@@ -28,7 +28,9 @@ for event in longpoll.listen():
                 training_date = messagee_parser.parse_date(received_message)
                 for exercise in training:
                     db.add_exercise_records(event.user_id, training_date, exercise['num'], exercise['name'],
-                                            exercise['details'], exercise['execution_details'])
+                                            exercise['sets'], exercise['reps'], exercise['details'],
+                                            exercise['execution_weight'], exercise['execution_details'])
+
                 response_message += '\n\nТренировка записана на дату ' + training_date + '.'
 
         elif received_message.startswith('покажи'):
@@ -41,7 +43,6 @@ for event in longpoll.listen():
                                           })
 
             response_message = training_formatter.generate_execution_history_description(execution_history)
-            print(execution_history)
 
         else:
             response_message = 'команда не распознана'

@@ -1,34 +1,20 @@
 import sqlite3
 
 
-def update_lists_to_len(list, desired_length):
-    len_diff = desired_length - len(list)
-    for i in range(len_diff):
-        list.append('')
-    return list
-
-
-def add_exercise_records(user_id, training_date, exercise_num, exercise_name, exercise_details,
-                         execution_details=['', '', '', '', '']):
+def add_exercise_records(user_id, training_date, exercise_num, exercise_name, sets, reps,
+                         details, execution_weight, execution_details):
     cursorobj = con.cursor()
-    exercise_details = update_lists_to_len(exercise_details, 5)
-    execution_details = update_lists_to_len(execution_details, 5)
     cursorobj.execute("""
                     INSERT INTO exercises VALUES(
                         """ + str(user_id) + """,
-                        '""" + str(training_date) + """',
+                        '""" + str(training_date).strip() + """',
                         """ + str(exercise_num) + """,
                         '""" + str(exercise_name) + """',
-                        '""" + str(exercise_details[0]) + """',
-                        '""" + str(exercise_details[1]) + """',
-                        '""" + str(exercise_details[2]) + """',
-                        '""" + str(exercise_details[3]) + """',
-                        '""" + str(exercise_details[4]) + """',
-                        '""" + str(execution_details[0]) + """',
-                        '""" + str(execution_details[1]) + """',
-                        '""" + str(execution_details[2]) + """',
-                        '""" + str(execution_details[3]) + """',
-                        '""" + str(execution_details[4]) + """'
+                        """ + str(sets) + """,
+                        """ + str(reps) + """,
+                        '""" + str(details) + """',
+                        """ + str(execution_weight) + """,
+                        '""" + str(execution_details) + """'
                     )
                     """)
     con.commit()
@@ -54,8 +40,11 @@ def get_top_records(user_id, exercise_name, amount=3):
     for row in rows:
         execution = {
             'date': row[1],
-            'details': shorten_list_to_last_filled(row[4:8]),
-            'execution_details': shorten_list_to_last_filled(row[9:13]),
+            'sets': row[4],
+            'reps': row[5],
+            'details': row[6],
+            'execution_weight': row[7],
+            'execution_details': row[8]
         }
         executions.append(execution)
     return executions
