@@ -20,13 +20,6 @@ def add_exercise_records(user_id, training_date, exercise_num, exercise_name, se
     con.commit()
 
 
-def shorten_list_to_last_filled(lst):
-    for index in range(len(lst)):
-        if not ''.join(lst[index:]):
-            break
-    return list(lst[:index])
-
-
 def get_top_records(user_id, exercise_name, amount=3):
     cursorobj = con.cursor()
     cursorobj.execute("""

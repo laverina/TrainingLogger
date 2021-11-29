@@ -84,6 +84,22 @@ def parse_training(text):
 
 
 def parse_date(text):
+    """
+    :param text: string with description of training, with record command and (optional) date in first line
+    :return:     date from first line (if provided); current date (if not)
+
+    Example input:
+      запиши 2021-10-21
+
+    Output:
+      2021-10-21
+
+    Example input:
+      запиши
+
+    Output:
+      current date in yyyy-mm-dd format
+    """
     lines = text.split('\n')
     date_from_first_line = lines[0][7:]
     if not date_from_first_line:
