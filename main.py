@@ -3,7 +3,7 @@ from random import randrange
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 import messagee_parser
-import training_formatter
+import message_formatter
 import db
 
 config = configparser.ConfigParser()
@@ -22,7 +22,7 @@ for event in longpoll.listen():
 
         if received_message.startswith('распарси') or received_message.startswith('запиши'):
             training = messagee_parser.parse_training(received_message)
-            response_message = training_formatter.generate_training_description(training)
+            response_message = message_formatter.generate_training_description(training)
 
             if received_message.startswith('запиши'):
                 training_date = messagee_parser.parse_date(received_message)
@@ -42,7 +42,7 @@ for event in longpoll.listen():
                                           'execution_history': exercise_history
                                           })
 
-            response_message = training_formatter.generate_execution_history_description(execution_history)
+            response_message = message_formatter.generate_execution_history_description(execution_history)
 
         else:
             response_message = 'команда не распознана'

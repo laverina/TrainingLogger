@@ -1,11 +1,11 @@
 import pytest
-import training_formatter
+import message_formatter
 
 # Test on generate_training_description
 
 
 def test_single_ex_basic_data():
-    assert training_formatter.generate_training_description([
+    assert message_formatter.generate_training_description([
       {
         'num': 1,
         'name': 'приседания со штангой',
@@ -25,7 +25,7 @@ def test_single_ex_basic_data():
 
 
 def test_single_ex_no_data():
-    assert training_formatter.generate_training_description([
+    assert message_formatter.generate_training_description([
       {
         'num': 1,
         'name': 'приседания со штангой',
