@@ -6,6 +6,7 @@ __pycache__/
 
 # IDEA
 .idea/
+.editorconfig
 
 # Configs with sensitive data
 config.ini
