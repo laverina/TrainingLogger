@@ -2,7 +2,7 @@ import configparser
 from random import randrange
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
-import messagee_parser
+import message_parser
 import message_formatter
 import db
 
@@ -21,11 +21,11 @@ for event in longpoll.listen():
         received_message = event.text
 
         if received_message.startswith('распарси') or received_message.startswith('запиши'):
-            training = messagee_parser.parse_training(received_message)
+            training = message_parser.parse_training(received_message)
             response_message = message_formatter.generate_training_description(training)
 
             if received_message.startswith('запиши'):
-                training_date = messagee_parser.parse_date(received_message)
+                training_date = message_parser.parse_date(received_message)
                 for exercise in training:
                     db.add_exercise_records(event.user_id, training_date, exercise['num'], exercise['name'],
                                             exercise['sets'], exercise['reps'], exercise['details'],
@@ -34,7 +34,7 @@ for event in longpoll.listen():
                 response_message += '\n\nТренировка записана на дату ' + training_date + '.'
 
         elif received_message.startswith('покажи'):
-            training = messagee_parser.parse_training(received_message)
+            training = message_parser.parse_training(received_message)
             execution_history = []
             for exercise in training:
                 exercise_history = db.get_top_records(event.user_id, exercise['name'])

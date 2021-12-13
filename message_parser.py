@@ -6,40 +6,6 @@ def parse_training(text):
     """
     :param text: string with description of training
     :return: list of dictionaries - each dictionary with structured exerciese decsription
-
-    Example input:
-      Приседания со штангой
-      4 по 8
-      35-40 кг
-      --40
-      --cкорее всего с плохой техникой, наверное нужно было поменьше
-
-      Выпады (ходьба)
-      16 (8+8) 3 подхода
-      Носок передней ноги внутрь смотрит
-      --с 2мя гантелями по 10 кг
-
-    Output:
-      [
-          {
-            'name':               'приседания со штангой',
-            'num':                1,
-            'sets':               4,
-            'reps':               8,
-            'details':            '35-40 кг',
-            'execution_weight':   40,
-            'execution_details': 'cкорее всего с плохой техникой, наверное нужно было поменьше':
-          },
-          {
-            'name':              'выпады (ходьба)',
-            'num':               2,
-            'sets':              0,
-            'reps':              0,
-            'details':           '16 (8+8) 3 подхода; носок передней ноги внутрь смотрит',
-            'execution_weight':  0,
-            'execution_details': 'с 2мя гантелями по 10 кг'
-          }
-      ]
     """
     lines = text.split('\n')
     training = []            # training = list of exercises
@@ -87,18 +53,6 @@ def parse_date(text):
     """
     :param text: string with description of training, with record command and (optional) date in first line
     :return:     date from first line (if provided); current date (if not)
-
-    Example input:
-      запиши 2021-10-21
-
-    Output:
-      2021-10-21
-
-    Example input:
-      запиши
-
-    Output:
-      current date in yyyy-mm-dd format
     """
     lines = text.split('\n')
     date_from_first_line = lines[0][7:]
