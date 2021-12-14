@@ -260,5 +260,3 @@ def test_history_formatter_mult_ex():
  --0 кг [с 2мя гантелями по 10 кг]
 
 """
-
-
