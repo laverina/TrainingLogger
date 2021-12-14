@@ -1,22 +1,31 @@
 def generate_training_description(training):
+    """
+    :param training: list of dictionaries, each one - with exercise details.
+    :return: formatted text to be presented to the user
+    """
     message = 'Тренировка состоит из упражнений:\n\n'
 
     for exercise in training:
         message += str(exercise['num']) + '. ' + exercise['name']
         if exercise['sets'] and exercise['reps']:
-            message += '\n -  ' + exercise['sets'] + ' по ' + exercise['reps']
+            message += '\n -  ' + str(exercise['sets']) + ' по ' + str(exercise['reps'])
         if exercise['details']:
             message += '\n - ' + exercise['details']
         if exercise['execution_weight']:
-            message += '\n -- ' + exercise['execution_weight'] + ' кг'
+            message += '\n -- ' + str(exercise['execution_weight']) + ' кг'
         if exercise['execution_details']:
             message += '\n -- ' + exercise['execution_details']
         message += '\n\n'
+
     return message
 
 
 def generate_execution_history_description(history):
-    message = 'последние записи об упражнениях:\n\n'
+    """
+    :param history: list of dictionaries, each one - with exercise execution details
+    :return: formatted text to be presented to the user
+    """
+    message = 'Последние записи об упражнениях:\n\n'
     for exercise in history:
         message += exercise['exercise_name']
         for record in exercise['execution_history']:

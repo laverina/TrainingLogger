@@ -2,9 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
 
 # IDEA
 .idea/
+.editorconfig
 
 # Configs with sensitive data
 config.ini
