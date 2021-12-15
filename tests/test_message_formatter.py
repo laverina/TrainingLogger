@@ -102,10 +102,10 @@ def test_history_formatter_1_ex_1_rec_min_data():
                 'execution_history': [
                     {
                         'date': '2021-11-21',
-                        'sets': '0',
-                        'reps': '0',
+                        'sets': 0,
+                        'reps': 0,
                         'details': '',
-                        'execution_weight': '0',
+                        'execution_weight': 0,
                         'execution_details': '',
                     }
                 ]
@@ -115,12 +115,8 @@ def test_history_formatter_1_ex_1_rec_min_data():
 
 приседания со штангой
 2021-11-21
- - 0 по 0
- --0 кг
 
 """
-# TODO fix "0 по 0"
-# TODO fix "0 кг"
 
 
 def test_history_formatter_1_ex_1_rec_no_weight_rep_set_details():
@@ -131,10 +127,10 @@ def test_history_formatter_1_ex_1_rec_no_weight_rep_set_details():
                 'execution_history': [
                     {
                         'date': '2021-11-21',
-                        'sets': '0',
-                        'reps': '0',
+                        'sets': 0,
+                        'reps': 0,
                         'details': 'детали',
-                        'execution_weight': '0',
+                        'execution_weight': 0,
                         'execution_details': 'детали выполнения',
                     }
                 ]
@@ -144,12 +140,10 @@ def test_history_formatter_1_ex_1_rec_no_weight_rep_set_details():
 
 приседания со штангой
 2021-11-21
- - 0 по 0 [детали]
- --0 кг [детали выполнения]
+ - [детали]
+ --[детали выполнения]
 
 """
-# TODO fix "0 по 0"
-# TODO fix "0 кг"
 
 
 def test_history_formatter_1_ex_1_rec_max_data():
@@ -160,10 +154,10 @@ def test_history_formatter_1_ex_1_rec_max_data():
                 'execution_history': [
                     {
                         'date': '2021-11-14',
-                        'sets': '5',
-                        'reps': '5',
+                        'sets': 5,
+                        'reps': 5,
                         'details': 'детали',
-                        'execution_weight': '40',
+                        'execution_weight': 40,
                         'execution_details': 'последний подход тяжело',
                     },
                 ]
@@ -208,10 +202,10 @@ def test_history_formatter_1_ex_mult_rec():
 
 приседания со штангой
 2021-11-21
- - 4 по 10
- --35 кг
+ - 4 по 10 
+ --35 кг 
 2021-11-14
- - 5 по 5
+ - 5 по 5 
  --40 кг [последний подход тяжело]
 
 """
@@ -225,10 +219,10 @@ def test_history_formatter_mult_ex():
                 'execution_history': [
                     {
                         'date': '2021-11-21',
-                        'sets': '4',
-                        'reps': '10',
+                        'sets': 4,
+                        'reps': 10,
                         'details': '',
-                        'execution_weight': '35',
+                        'execution_weight': 35,
                         'execution_details': '',
                     }
                 ]
@@ -238,10 +232,10 @@ def test_history_formatter_mult_ex():
                 'execution_history': [
                     {
                         'date': '2021-11-21',
-                        'sets': '0',
-                        'reps': '0',
+                        'sets': 0,
+                        'reps': 0,
                         'details': '16 (8+8) 3 подхода; носок передней ноги внутрь смотрит',
-                        'execution_weight': '0',
+                        'execution_weight': 0,
                         'execution_details': 'с 2мя гантелями по 10 кг',
                     }
                 ]
@@ -251,12 +245,12 @@ def test_history_formatter_mult_ex():
 
 приседания со штангой
 2021-11-21
- - 4 по 10
- --35 кг
+ - 4 по 10 
+ --35 кг 
 
 выпады (ходьба)
 2021-11-21
- - 0 по 0 [16 (8+8) 3 подхода; носок передней ноги внутрь смотрит]
- --0 кг [с 2мя гантелями по 10 кг]
+ - [16 (8+8) 3 подхода; носок передней ноги внутрь смотрит]
+ --[с 2мя гантелями по 10 кг]
 
 """

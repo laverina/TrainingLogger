@@ -30,14 +30,18 @@ def generate_execution_history_description(history):
         message += exercise['exercise_name']
         for record in exercise['execution_history']:
             message += '\n' + record['date']
-            if record['sets'] and record['reps']:
-                message += '\n - ' + str(record['sets']) + ' по ' + str(record['reps'])
+            if (record['sets'] and record['reps']) or record['details']:
+                message += '\n - '
+                if record['sets'] and record['reps']:
+                    message += str(record['sets']) + ' по ' + str(record['reps']) + ' '
                 if record['details']:
-                    message += ' [' + record['details'] + ']'
-            if record['execution_weight']:
-                message += '\n --' + str(record['execution_weight']) + ' кг'
+                    message += '[' + record['details'] + ']'
+            if record['execution_weight'] or record['execution_details']:
+                message += '\n --'
+                if record['execution_weight']:
+                    message += str(record['execution_weight']) + ' кг '
                 if record['execution_details']:
-                    message += ' [' + record['execution_details'] + ']'
+                    message += '[' + record['execution_details'] + ']'
 
         message += '\n\n'
     return message

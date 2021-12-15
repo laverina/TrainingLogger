@@ -33,10 +33,10 @@ def get_top_records(user_id, exercise_name, amount=3):
     for row in rows:
         execution = {
             'date': row[1],
-            'sets': row[4],
-            'reps': row[5],
+            'sets': int(row[4]),
+            'reps': int(row[5]),
             'details': row[6],
-            'execution_weight': row[7],
+            'execution_weight': int(row[7]),
             'execution_details': row[8]
         }
         executions.append(execution)
